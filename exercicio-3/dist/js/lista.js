@@ -1,4 +1,7 @@
-[
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+
+export const lista = [
     {
         "id": 1,
         "name": "Ada Lovelace",
@@ -19,4 +22,4 @@
         "name": "Nicolau Copérnico",
         "bio": "Nicolau Copérnico foi um astrônomo e matemático polonês que desenvolveu a teoria heliocêntrica do Sistema Solar."
     }
-]
+];
