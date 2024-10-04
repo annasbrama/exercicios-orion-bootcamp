@@ -6,37 +6,31 @@ export function buscaPorId(id: number): Pessoa | undefined {
 
 export function procurarNome(id: number): string {
     const pessoa = buscaPorId(id)
-    return pessoa ? pessoa.name : "Erro: Nome não encontrado"
+    return pessoa ? pessoa.name && pessoa.bio : "Erro: Nome não encontrado"
 }
 
-export function excluirId(id: number): Array<Pessoa> {
-    const removerId = buscaPorId(id)
-    if (!removerId) {
-        return lista
-    }
-    return lista.filter(pessoa => pessoa.id !== id)
+export function excluirId(id: number, lista: Array<Pessoa>) {
+    const index = lista.findIndex(pessoa => pessoa.id === id)
+    lista.splice(index, 1)
 }
 
-export function alterar(id: number, newName?: string, newBio?: string): Array<Pessoa> {
-    const encontrarId = buscaPorId(id);
-
-    if (!encontrarId) {
-        return lista;
+export function alterar(id: number, newName?: string, newBio?: string): void {
+    const index = lista.findIndex(pessoa => pessoa.id === id);
+    if (index !== -1) {
+        lista[index] = {
+            ...lista[index],
+            name: newName || lista[index].name,
+            bio: newBio || lista[index].bio
+        }
     }
-
-    return lista.map(pessoa =>
-        pessoa.id === id
-            ? { ...pessoa, name: newName || pessoa.name, bio: newBio || pessoa.bio }
-            : pessoa
-    );
 }
 
 export function contandoVogais(palavra: string): number {
-    const vogais = ['a', 'e', 'i', 'o', 'u']
+    const contagemVogais = ['a', 'e', 'i', 'o', 'u']
     let contador = 0
 
     for (let letra of palavra) {
-        if (vogais.includes(letra)) {
+        if (contagemVogais.includes(letra)) {
             contador++
         }
     }

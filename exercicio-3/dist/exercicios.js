@@ -1,28 +1,26 @@
 import { lista } from "./lista.js";
-export function procurarBio(id) {
-    var _a;
-    return ((_a = lista.find(pessoa => pessoa.id === id)) === null || _a === void 0 ? void 0 : _a.bio) || "Erro: não encontrado";
+export function buscaPorId(id) {
+    return lista.find((pessoa) => pessoa.id === id);
 }
 export function procurarNome(id) {
-    var _a;
-    return ((_a = lista.find(pessoa => pessoa.id === id)) === null || _a === void 0 ? void 0 : _a.name) || "Erro: não encontrado";
+    const pessoa = buscaPorId(id);
+    return pessoa ? pessoa.name && pessoa.bio : "Erro: Nome não encontrado";
 }
-export function removerId(id) {
-    lista.filter(pessoa => pessoa.id !== id);
+export function excluirId(id, lista) {
+    const index = lista.findIndex(pessoa => pessoa.id === id);
+    lista.splice(index, 1);
 }
 export function alterar(id, newName, newBio) {
-    lista.map(pessoa => {
-        if (pessoa.id === id) {
-            return Object.assign(Object.assign({}, pessoa), { name: newName || pessoa.name, bio: newBio || pessoa.bio });
-        }
-        return pessoa;
-    });
+    const index = lista.findIndex(pessoa => pessoa.id === id);
+    if (index !== -1) {
+        lista[index] = Object.assign(Object.assign({}, lista[index]), { name: newName || lista[index].name, bio: newBio || lista[index].bio });
+    }
 }
 export function contandoVogais(palavra) {
-    const vogais = ['a', 'e', 'i', 'o', 'u'];
+    const contagemVogais = ['a', 'e', 'i', 'o', 'u'];
     let contador = 0;
     for (let letra of palavra) {
-        if (vogais.includes(letra)) {
+        if (contagemVogais.includes(letra)) {
             contador++;
         }
     }
