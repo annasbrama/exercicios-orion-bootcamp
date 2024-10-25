@@ -254,3 +254,31 @@ body {
 .modal-content .input-modal:focus {
     background: #fff;
 }
+
+@media (max-width: 670px) {
+
+    .card {
+        width: 90vw;
+    }
+
+    .form-item,
+    .novo-btn {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .card .input,
+    .btn-search {
+        width: 50%;
+    }
+
+    .cientistas {
+        padding: 1rem;
+    }
+
+    .cientistas section {
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+}
